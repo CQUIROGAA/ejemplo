@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Developers SAC</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{{ path_for('home') }}" class="navbar-brand">Menú</a>
+        </div>
+        <div class="nav navbar-nav">
+            <li><a href="{{ path_for('empleado') }}">Empleados</a></li>
+        </div>
+        <div class="nav navbar-nav">
+            <li><a href="{{ path_for('ejercicios') }}">Ejercicios</a></li>
+        </div>
+    </div>
+</nav>
+<div >
+
+{% block content %}{% endblock %}
+
+</div>
+</body>
+</html>

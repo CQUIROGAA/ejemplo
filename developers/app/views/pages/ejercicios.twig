@@ -1,0 +1,28 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    <h1>Empleados</h1>
+
+    <form action="{{ path_for('ejercicios') }}" method="post">
+        <div class="form-group">
+            <label for="change">ChangeString</label>
+            <input type="text" class="form-control" name="change" id="change" value="{{ changeString }}"/>
+            <div>{{ changeStringRes }}</div>
+        </div>
+        <div class="form-group">
+            <label for="range">CompleteRange</label>
+            <input type="text" class="form-control" name="range" id="range" value="{{ completeRange }}"/>
+            <div>{{ completeRangeRes }}</div>
+        </div>
+        <div class="form-group">
+            <label for="clear">ClearPar</label>
+            <input type="text" class="form-control" name="clear" id="clear" value="{{ clearPar }}"></input>
+            <div>{{ clearParRes }}</div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Enviar"/>
+        </div>
+    </form>
+
+{% endblock %}

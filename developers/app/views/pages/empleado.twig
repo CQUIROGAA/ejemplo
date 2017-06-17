@@ -1,0 +1,104 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    <h1>Empleados</h1>
+
+    <form action="{{ path_for('empleado') }}" method="post">
+		<div class="form-group">
+            <label for="name">Buscar por email: </label>
+            <input type="text" class="form-control" name="name" id="name" value="{{ texto }}"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="criterio" id="criterio" autocomplete="off"
+				class="btn btn-primary" value="Buscar"/>
+        </div>
+        <div class="form-group">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                    <th colspan="2" align="center">Actions</th>
+                </tr>
+				<form action="{{ path_for('detalle') }}" method="post"></form>
+                </thead>
+                <tbody>
+                {% if empleados %}
+                    {% for row in empleados %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.email }}</td>
+                            <td>{{ row.position }}</td>
+                            <td>{{ row.salary }}</td>
+                            <td>
+								<form action="{{ path_for('detalle') }}" method="post"> 
+									<input class="btn btn-primary" type = "submit" value ="Detalle">
+									<input type="hidden" name="names" id="names" value="{{ texto }}">
+									<input type="hidden" id="idEmpleado" name="idEmpleado" value="{{ row.id }}">
+								</form>
+							</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <p>No records found</p>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+		<br/>
+		{% for det in detalle %}
+		<h1>Detalle</h1>
+		<br/>
+		<div class="form-group">
+			<div class="form-group">
+				<label for="a1">Name: </label>
+				<div class="form-control" id="a1">{{ det.name }}</div>
+			</div>
+			<div class="form-group">
+				<label for="a2">Email: </label>
+				<div class="form-control" id="a2">{{ det.email }}</div>
+			</div>
+			<div class="form-group">
+				<label for="a3">Phone: </label>
+				<div class="form-control" id="a3">{{ det.phone }}</div>
+			</div>
+			<div class="form-group">
+				<label for="a4">Address: </label>
+				<div class="form-control" id="a4">{{ det.address }}</div>
+			</div>
+			<div class="form-group">
+				<label for="a5">Position: </label>
+				<div class="form-control" id="a5">{{ det.position }}</div>
+			</div>
+			<div class="form-group">
+				<label for="a6">Salary: </label>
+				<div class="form-control" id="a6">{{ det.salary }}</div>
+			</div>
+			<div class="form-group">
+				<label for="a7">Skills: </label>
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>skill</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% if det.skills %}
+						{% for row in det.skills %}
+							<tr>
+								<td>{{ row.skill }}</td>
+							</tr>
+						{% endfor %}
+					{% else %}
+						<p>No records found</p>
+					{% endif %}
+					</tbody>
+				</table>
+			</div>
+		{% endfor %}
+        </div>
+    </form>
+{% endblock %}
